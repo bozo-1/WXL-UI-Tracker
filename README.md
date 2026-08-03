@@ -215,7 +215,7 @@ wxl-ui-tracker/
 <p align="center">
   <img src="https://github.com/user-attachments/assets/6a7374ee-a8ad-4b31-9d1a-2088dc9d8ddb"
        alt="WXL UI Tracker Demo"
-       width="80%">
+       width="100%">
 </p>
 
 
