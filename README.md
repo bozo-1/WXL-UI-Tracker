@@ -213,10 +213,11 @@ wxl-ui-tracker/
   </tr>
 </table>
 <p align="center">
-  <a href="https://jumpshare.com/share/sgLNSGmZ7aoFh2aZ1ILO?b=eM0nPE7EdMQnTxbBLeTS">
-    <img src="https://github.com/user-attachments/assets/YOUR_THUMBNAIL" width="90%" alt="Watch Demo">
-  </a>
+  <img src="https://github.com/user-attachments/assets/6a7374ee-a8ad-4b31-9d1a-2088dc9d8ddb"
+       alt="WXL UI Tracker Demo"
+       width="80%">
 </p>
+
 
 ## Features
 
