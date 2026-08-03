@@ -195,7 +195,6 @@ wxl-ui-tracker/
   <tr>
     <td><img src="https://github.com/user-attachments/assets/63ec48a6-58fa-4753-ab2e-47bff0c2a18f" width="430"></td>
     <td><img src="https://github.com/user-attachments/assets/d47a2e80-8793-413a-9261-0f450f36b7c1" width="430"></td>
-    <td><img src="https://github.com/user-attachments/assets/11054bbd-090e-4d0c-bd39-e3b3b534fb5b" width="430"></td>
   </tr>
 </table>
 
