@@ -185,11 +185,16 @@ wxl-ui-tracker/
 
 ---
 
-## Screenshots
+## Media
 
-*(to be added)*
+<img width="344" height="347" alt="Screenshot 2026-08-03 181826" src="https://github.com/user-attachments/assets/64ffdf4b-3414-48f5-a7d8-49ede24b3b67" />
+<img width="891" height="663" alt="Screenshot 2026-08-03 181854" src="https://github.com/user-attachments/assets/75c6a758-5d34-4f07-adef-54e9c3324bbe" />
+<img width="1114" height="825" alt="Screenshot 2026-08-03 181915" src="https://github.com/user-attachments/assets/f9af177d-a997-4705-88a9-c51455aa844d" />
+<img width="1317" height="746" alt="Screenshot 2026-08-03 182523" src="https://github.com/user-attachments/assets/63ec48a6-58fa-4753-ab2e-47bff0c2a18f" />
+<img width="868" height="682" alt="Screenshot 2026-08-03 195617" src="https://github.com/user-attachments/assets/d47a2e80-8793-413a-9261-0f450f36b7c1" />
+<img width="1156" height="887" alt="Screenshot 2026-08-03 181811" src="https://github.com/user-attachments/assets/11054bbd-090e-
+4d0c-bd39-e3b3b534fb5b" />
 
----
 
 ## Features
 
