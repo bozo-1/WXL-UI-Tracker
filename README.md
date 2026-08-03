@@ -159,7 +159,7 @@ Interface/navigation/ingamenavigationui.blp             ← retail navigation UI
 
 ### 5️⃣ Custom Interface Options
 
-The "Quest Tracker" panel appears under the third **Custom** tab of Interface Options
+The "Quest Tracker" panel appears under the second **Custom** tab of Interface Options
 (`wxl-custom-interface` provides the tab; `wxl-quest-marker` registers the panel via
 `TriAddCategory`).
 
