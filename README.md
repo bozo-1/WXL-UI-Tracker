@@ -212,6 +212,7 @@ wxl-ui-tracker/
     </td>
   </tr>
 </table>
+<img width="692" height="388" alt="Video Project 1(2)" src="https://github.com/user-attachments/assets/3a171fac-0122-45fa-a229-f4cc879851c3" />
 
 
 ## Features
