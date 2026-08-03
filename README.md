@@ -186,17 +186,30 @@ wxl-ui-tracker/
 ---
 
 ## Media
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/64ffdf4b-3414-48f5-a7d8-49ede24b3b67" width="32.5%">
-  <img src="https://github.com/user-attachments/assets/75c6a758-5d34-4f07-adef-54e9c3324bbe" width="32.5%">
-  <img src="https://github.com/user-attachments/assets/f9af177d-a997-4705-88a9-c51455aa844d" width="32.5%">
-</p>
-
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/63ec48a6-58fa-4753-ab2e-47bff0c2a18f" width="32.5%">
-  <img src="https://github.com/user-attachments/assets/d47a2e80-8793-413a-9261-0f450f36b7c1" width="32.5%">
-  <img src="https://github.com/user-attachments/assets/11054bbd-090e-4d0c-bd39-e3b3b534fb5b" width="32.5%">
-</p>
+<table align="center" width="100%">
+  <tr>
+    <td width="33.33%" align="center">
+      <img src="https://github.com/user-attachments/assets/64ffdf4b-3414-48f5-a7d8-49ede24b3b67" width="100%">
+    </td>
+    <td width="33.33%" align="center">
+      <img src="https://github.com/user-attachments/assets/75c6a758-5d34-4f07-adef-54e9c3324bbe" width="100%">
+    </td>
+    <td width="33.33%" align="center">
+      <img src="https://github.com/user-attachments/assets/f9af177d-a997-4705-88a9-c51455aa844d" width="100%">
+    </td>
+  </tr>
+  <tr>
+    <td width="33.33%" align="center">
+      <img src="https://github.com/user-attachments/assets/63ec48a6-58fa-4753-ab2e-47bff0c2a18f" width="100%">
+    </td>
+    <td width="33.33%" align="center">
+      <img src="https://github.com/user-attachments/assets/d47a2e80-8793-413a-9261-0f450f36b7c1" width="100%">
+    </td>
+    <td width="33.33%" align="center">
+      <img src="https://github.com/user-attachments/assets/11054bbd-090e-4d0c-bd39-e3b3b534fb5b" width="100%">
+    </td>
+  </tr>
+</table>
 
 
 
