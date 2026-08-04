@@ -339,9 +339,24 @@ namespace wxl::scripts::questmarker
             -- of zone eligibility, so it must follow the SELECTED quest, not the
             -- marker cache. Request it whenever the selected quest changes. Deduped
             -- so the per-frame SyncToSelection never spams opcode 103.
+            -- The L/M selection registers can PING-PONG across two quests (the
+            -- WatchFrame re-selects the map's saved quest while the quest log
+            -- holds a different selection), which defeats a pure change latch and
+            -- floods opcode 103/101 at per-frame rate -- the core's anti-DoS then
+            -- kicks the player (DosProtection::EvaluateOpcode AntiDOS). A time
+            -- cooldown caps the rate instead: at most one kill-entry request per
+            -- 2s per session, even while the registers oscillate.
+            local lastKillTime = 0
+            local function KillRequestAllowed(questId)
+                if not (questId and questId > 0) then return false end
+                local now = GetTime()
+                if questId == lastKillQuest or now - lastKillTime < 2 then return false end
+                lastKillQuest = questId
+                lastKillTime = now
+                return true
+            end
             local function RequestKillEntriesIfChanged(questId)
-                if questId and questId > 0 and questId ~= lastKillQuest then
-                    lastKillQuest = questId
+                if KillRequestAllowed(questId) then
                     SendKillEntriesRequest(questId)
                 end
             end
@@ -352,6 +367,7 @@ namespace wxl::scripts::questmarker
             -- (zone change / login), so the highlight can never stay empty.
             local function ClearKillEntries()
                 lastKillQuest = 0
+                lastKillTime = 0
                 if ClearKillObjectiveEntries then ClearKillObjectiveEntries() end
                 if ClearSelCircleQuestEntries then ClearSelCircleQuestEntries() end
             end
@@ -367,12 +383,14 @@ namespace wxl::scripts::questmarker
                     elseif not fromServer then
                         -- No cached marker (e.g. packet was swallowed by lockout on login).
                         -- 101 resends BOTH marker and kill entries, so the dedupe
-                        -- must consider it already requested.
-                        lastKillQuest = questId
-                        local pkt = CreateCustomPacket(100, 6)
-                        pkt:WriteUInt16(101)
-                        pkt:WriteUInt32(questId)
-                        pkt:Send()
+                        -- must consider it already requested. Same time-cooldown
+                        -- latch as the 103 path (see KillRequestAllowed).
+                        if KillRequestAllowed(questId) then
+                            local pkt = CreateCustomPacket(100, 6)
+                            pkt:WriteUInt16(101)
+                            pkt:WriteUInt32(questId)
+                            pkt:Send()
+                        end
                     else
                         -- Selected/auto-tracked quest with NO marker data in this
                         -- zone: still request its kill entries — the quest-mob
@@ -651,7 +669,14 @@ namespace wxl::scripts::questmarker
                                     -- glow) on login / zone change / quest switch.
                                     -- Idempotent: QuestPOI_SelectButton early-returns
                                     -- when that quest is already the selected one.
-                                    if QuestPOI_SelectButtonByQuestId then
+                                    -- Gate on an actual register change: the native
+                                    -- WatchFrame_Update re-selects its own quest and
+                                    -- would otherwise ping-pong the selection (and
+                                    -- the 101/103 request stream) between the M and
+                                    -- L registers every frame.
+                                    if QuestPOI_SelectButtonByQuestId and
+                                       (not WORLDMAP_SETTINGS or
+                                        WORLDMAP_SETTINGS.selectedQuestId ~= currentQuest) then
                                         QuestPOI_SelectButtonByQuestId('WatchFrameLines', currentQuest, true)
                                     end
                                     -- Convert the title row anchor to NDC. Diamond is
