@@ -157,9 +157,27 @@ Textures/highlightcircle/unitselecttexture-quest.blp    ← marker/circle textur
 Interface/navigation/ingamenavigationui.blp             ← retail navigation UI atlas
 ```
 
-### 5️⃣ Custom Interface Options
+### 5️⃣ Interface-wide font (optional)
 
-The "Quest Tracker" panel appears under the second **Custom** tab of Interface Options
+The repo ships **Expressway** as the interface font (`assets/fonts/Expressway.ttf`).
+To replace the whole UI font (chat, tooltips, menus, quest log, nameplates, damage
+text, even the login screen), deploy the font into the patch archive under the
+standard font names every UI font object resolves to:
+
+```
+Interface/Fonts/FRIZQT__.TTF   ← main UI font
+Interface/Fonts/ARIALN.TTF     ← numeric/narrow font
+Interface/Fonts/MORPHEUS.ttf   ← title / quest font
+Interface/Fonts/skurri.ttf     ← damage-text font
+Interface/Fonts/FRIENDS.TTF    ← friends-list font
+```
+
+All five are copies of `Expressway.ttf`. Revert by deleting these five files — the
+original Blizzard fonts live in the base MPQs and are never touched.
+
+### 6️⃣ Custom Interface Options
+
+The "Quest Tracker" panel appears under the third **Custom** tab of Interface Options
 (`wxl-custom-interface` provides the tab; `wxl-quest-marker` registers the panel via
 `TriAddCategory`).
 
@@ -174,6 +192,41 @@ The "Quest Tracker" panel appears under the second **Custom** tab of Interface O
 | 🖥️ Server framework | **TSWoW** — `QueryWorld`, `CreateCustomPacket`, `events.WorldPacket`, `std.LUAXML` |
 | 🎨 Renderer | Direct3D **9** |
 | 🔨 Build | wxl-core toolchain (MSVC, x86) for the DLL; tswow-scripts for server + FrameXML |
+
+---
+
+## 🩺 Troubleshooting
+
+### Anti-DoS kicks after zone changes
+
+Older module builds could flood the server with quest-entry requests (custom
+packet sub-opcodes 101/103) when the quest-log and world-map selection registers
+ping-pong across two quests. TrinityCore's `DosProtection::EvaluateOpcode`
+then kicks the player ("kicked with reason: ... AntiDOS") within a second or two
+of a zone change. The module now rate-limits entry requests to one per 2 s, so
+the flood is structurally impossible. If you still get kicked shortly after a
+zone change, you are on an older `WarcraftXL.dll` — update the
+`wxl-quest-marker` module.
+
+### Quest ring / FrameXML edits not applying (hostless clients)
+
+The quest-ring texture and the navigation atlas ship in the client's **loose**
+`Data/patch-A.MPQ` directory, and the FrameXML edits shadow the stock files from
+the same directory. The 3.3.5a client reads loose patch directories natively,
+but wxl-core builds with the **archive-mount guard** drop host-owned loose
+directories unless the host process (`WarcraftXLHost.exe`) is running. If the
+rings show the stock texture (or the Interface Options panel / dropdown edits
+are missing), either:
+
+- run `WarcraftXLHost.exe` alongside the client, or
+- use a wxl-core build that mounts loose directories natively when the host is
+  absent (the guard's skip is conditional on the host connection).
+
+### "Unknown frame type: Layers" in FrameXML.log
+
+Benign — the `QuestTrackerOptions.xml` panel loads correctly; the two log lines
+refer to the panel's `<Layers>` title block being walked by the frame-type
+dispatcher. No functionality is affected.
 
 ---
 
