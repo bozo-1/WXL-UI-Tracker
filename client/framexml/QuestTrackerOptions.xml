@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Ui>
+  <Script file="QuestTrackerOptions.lua"/>
+  <Frame name="InterfaceOptionsQuestTrackerPanel" hidden="true" parent="InterfaceOptionsFramePanelContainer">
+    <Size x="648" y="520"/>
+    <Anchors>
+      <Anchor point="TOPLEFT"/>
+    </Anchors>
+    <Backdrop bgFile="Interface\OptionsFrame\UI-OptionsFrame-Background"
+              edgeFile="Interface\OptionsFrame\UI-OptionsFrame-Border"
+              tile="true">
+      <BackgroundInsets>
+        <AbsInset left="11" right="12" top="12" bottom="11"/>
+      </BackgroundInsets>
+    </Backdrop>
+    <Layers>
+      <Layer level="ARTWORK">
+        <FontString name="$parentTitle" inherits="GameFontNormalLarge" text="Quest Tracker">
+          <Anchors>
+            <Anchor point="TOPLEFT" x="16" y="-16"/>
+          </Anchors>
+        </FontString>
+        <FontString name="$parentSubText" inherits="GameFontHighlightSmall"
+                    text="Configure the WarcraftXL Quest Tracker below.">
+          <Anchors>
+            <Anchor point="TOPLEFT" x="16" y="-38"/>
+          </Anchors>
+          <Dimension x="500" y="0"/>
+        </FontString>
+      </Layer>
+    </Layers>
+    <Frames>
+      <CheckButton name="WXTrackerEnabled" inherits="InterfaceOptionsCheckButtonTemplate">
+        <Anchors>
+          <Anchor point="TOPLEFT" x="16" y="-62"/>
+        </Anchors>
+        <Scripts>
+          <OnLoad>
+            self.tooltipText = "Toggle the quest marker and distance text system on or off.";
+          </OnLoad>
+        </Scripts>
+      </CheckButton>
+      <CheckButton name="WXTrackerAutoTrack" inherits="InterfaceOptionsCheckButtonTemplate">
+        <Anchors>
+          <Anchor point="TOPLEFT" x="16" y="-86"/>
+        </Anchors>
+      </CheckButton>
+      <CheckButton name="WXTrackerShowCompleted" inherits="InterfaceOptionsCheckButtonTemplate">
+        <Anchors>
+          <Anchor point="TOPLEFT" x="16" y="-110"/>
+        </Anchors>
+      </CheckButton>
+      <Layers>
+        <Layer level="ARTWORK">
+          <FontString name="$parentMarkerHeader" inherits="GameFontNormal" text="Marker">
+            <Anchors>
+              <Anchor point="TOPLEFT" x="16" y="-142"/>
+            </Anchors>
+          </FontString>
+        </Layer>
+      </Layers>
+      <CheckButton name="WXTrackerShowMarker" inherits="InterfaceOptionsCheckButtonTemplate">
+        <Anchors>
+          <Anchor point="TOPLEFT" x="16" y="-164"/>
+        </Anchors>
+      </CheckButton>
+      <Frame name="WXTrackerMarkerStyle" inherits="UIDropDownMenuTemplate">
+        <Size x="140" y="22"/>
+        <Anchors>
+          <Anchor point="TOPLEFT" x="136" y="-190"/>
+        </Anchors>
+      </Frame>
+      <Frame name="WXTrackerMarkerSize" inherits="UIDropDownMenuTemplate">
+        <Size x="140" y="22"/>
+        <Anchors>
+          <Anchor point="TOPLEFT" x="136" y="-218"/>
+        </Anchors>
+      </Frame>
+      <CheckButton name="WXTrackerFadeClose" inherits="InterfaceOptionsCheckButtonTemplate">
+        <Anchors>
+          <Anchor point="TOPLEFT" x="16" y="-248"/>
+        </Anchors>
+      </CheckButton>
+      <CheckButton name="WXTrackerShowThrough" inherits="InterfaceOptionsCheckButtonTemplate">
+        <Anchors>
+          <Anchor point="TOPLEFT" x="16" y="-272"/>
+        </Anchors>
+      </CheckButton>
+      <CheckButton name="WXTrackerAnimated" inherits="InterfaceOptionsCheckButtonTemplate">
+        <Anchors>
+          <Anchor point="TOPLEFT" x="16" y="-296"/>
+        </Anchors>
+      </CheckButton>
+      <Layers>
+        <Layer level="ARTWORK">
+          <FontString name="$parentDistHeader" inherits="GameFontNormal" text="Distance Text">
+            <Anchors>
+              <Anchor point="TOPLEFT" x="16" y="-328"/>
+            </Anchors>
+          </FontString>
+        </Layer>
+      </Layers>
+      <CheckButton name="WXTrackerShowDistance" inherits="InterfaceOptionsCheckButtonTemplate">
+        <Anchors>
+          <Anchor point="TOPLEFT" x="16" y="-350"/>
+        </Anchors>
+      </CheckButton>
+      <Frame name="WXTrackerDistUnits" inherits="UIDropDownMenuTemplate">
+        <Size x="140" y="22"/>
+        <Anchors>
+          <Anchor point="TOPLEFT" x="136" y="-376"/>
+        </Anchors>
+      </Frame>
+      <Frame name="WXTrackerFontSize" inherits="UIDropDownMenuTemplate">
+        <Size x="140" y="22"/>
+        <Anchors>
+          <Anchor point="TOPLEFT" x="136" y="-404"/>
+        </Anchors>
+      </Frame>
+      <CheckButton name="WXTrackerFontOutline" inherits="InterfaceOptionsCheckButtonTemplate">
+        <Anchors>
+          <Anchor point="TOPLEFT" x="16" y="-434"/>
+        </Anchors>
+      </CheckButton>
+    </Frames>
+    <Scripts>
+      <OnLoad function="QuestTrackerOptionsPanel_OnLoad"/>
+    </Scripts>
+  </Frame>
+</Ui>
